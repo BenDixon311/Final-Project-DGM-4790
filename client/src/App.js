@@ -17,7 +17,7 @@ class App extends Component {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Learn React
+            Learn React - attempting to connect frontend to my backend.
           </a>
         </header>
       </div>
