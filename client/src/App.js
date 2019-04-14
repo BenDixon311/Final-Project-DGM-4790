@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './Header';
 import Footer from './Footer';
-import { Switch, Route, withRouter } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 class App extends Component {
   render() {
