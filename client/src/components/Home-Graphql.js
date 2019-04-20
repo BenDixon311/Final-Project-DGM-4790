@@ -5,7 +5,8 @@ class HomeGraphql extends Component{
     render() {
         return (
             <div>
-                {/* stuff goes here */}
+                <p>Hey whats up! Graphql HOME</p>
+                
             </div>
         )
     }

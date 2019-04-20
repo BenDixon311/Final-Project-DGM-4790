@@ -1,11 +1,31 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
+let axiosConfig = {
+    headers: {
+        'Access-Control-Allow-Origin': "*"
+    }
+};
 
 class HomeRest extends Component{
+    state = {
+        playerData: []
+    }
+
+    componentDidMount() {
+        axios.get('https://restful-crud-node-server.herokuapp.com/', axiosConfig)
+            .then(res => {
+                const playerData = res.data;
+                this.setState({ playerData });
+            })
+    }
+
+
     render() {
         return (
             <div>
-                {/* stuff goes here */}
+                <p>Hey whats up!</p>
+                <ul>{ this.state.playerData.map(player => <li>Player Name: { player.name }</li>)}</ul>
             </div>
         )
     }
