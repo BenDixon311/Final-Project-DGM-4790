@@ -9,6 +9,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import Grid from '@material-ui/core/Grid';
 import { classExpression } from '@babel/types';
 
 const styles = {
@@ -20,6 +21,17 @@ const styles = {
     },
   };
 
+  const cardStyle= {
+      maxWidth: 345
+  }
+
+  const cardMediaStyle = {
+      height: 140
+  }
+
+  const rootStyle = {
+      flexGrow: 1
+  }
 
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
@@ -28,6 +40,8 @@ class HomeRest extends Component{
     state = {
         playerData: []
     }
+
+ 
 
     
    
@@ -43,38 +57,42 @@ class HomeRest extends Component{
 
     render() {
         return (
-            <div>
+            <div style={rootStyle}>
+                <Grid container spaceing = {40}>
+                
                 { this.state.playerData.map(player =>
-                    <Card>
-                    <CardActionArea>
-                        <CardMedia
-                         
-                          image={player.imgurl}
-                          title={player.name}
-                        />
-                        <CardContent>
-                            <Typography gutterBottom variant="h4" component="h2">
-                                {player.name}
-                            </Typography>
-                            <Typography component="h4">
-                                {player.team}
-                            </Typography>
-                            <Typography component="h5">
-                                {player.position}
-                            </Typography>
+                    <Grid item xs={3}>
+                        <Card style={cardStyle}>
+                        <CardActionArea>
+                            <CardMedia
+                            style={cardMediaStyle}
+                            image={player.imgurl}
+                            title={player.name}
+                            />
+                            <CardContent>
+                                <Typography gutterBottom variant="h4" component="h2">
+                                    {player.name}
+                                </Typography>
+                                <Typography component="h4">
+                                    {player.team}
+                                </Typography>
+                                <Typography component="h5">
+                                    {player.position}
+                                </Typography>
 
-                        </CardContent>
+                            </CardContent>
 
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                        Learn More
-                        </Button>
-                    </CardActions>
-                </Card>
-
+                        </CardActionArea>
+                        <CardActions>
+                            <Button size="small" color="primary">
+                            Learn More
+                            </Button>
+                        </CardActions>
+                    </Card>
+                </Grid>
 
                 )}
+                </Grid>
             </div>
         )
     }
