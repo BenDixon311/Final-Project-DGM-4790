@@ -23,7 +23,7 @@ class HomeRest extends Component{
         return (
             <div>
                 <p>Hey whats up!</p>
-                <ul>{ this.state.playerData.map(player => <li>Player Name: { player.name }</li>)}</ul>
+                <ul>{ this.state.playerData.map(player => <li>Player Name: { player.name } Team: { player.team }</li>)}</ul>
             </div>
         )
     }
