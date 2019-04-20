@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-let axiosConfig = {
-    headers: {
-        'Access-Control-Allow-Origin': "*"
-    }
-};
+
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
@@ -15,7 +11,7 @@ class HomeRest extends Component{
     }
 
     componentDidMount() {
-        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/', axiosConfig)
+        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/')
             .then(res => {
                 const playerData = res.data;
                 this.setState({ playerData });
