@@ -22,11 +22,12 @@ const styles = {
   };
 
   const cardStyle= {
-      maxWidth: 345
+      maxWidth: 345,
+      maxHeight: 500
   }
 
   const cardMediaStyle = {
-      height: 140
+      height: 260
   }
 
   const rootStyle = {
@@ -58,7 +59,7 @@ class HomeRest extends Component{
     render() {
         return (
             <div style={rootStyle}>
-                <Grid container spaceing = {40}>
+                <Grid container spacing = {40}>
                 
                 { this.state.playerData.map(player =>
                     <Grid item xs={3}>
