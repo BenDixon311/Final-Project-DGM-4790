@@ -38,6 +38,10 @@ const styles = theme => ({
 
 
 class AddRest extends Component{
+
+    state ={
+        isDisabled: true
+    }
     
     render() {
         const { classes } = this.props;
@@ -95,7 +99,13 @@ class AddRest extends Component{
                         variant="filled"
                     />
 
-                    <Button type = "submit" variant="contained" color="default" className={classes.button}>
+                    <Button 
+                    type = "submit" 
+                    variant="contained" 
+                    color="default" 
+                    className={classes.button}
+                    disabled = {this.state.isDisabled}
+                    >
                             Submit       
                     </Button>
                 </form>
