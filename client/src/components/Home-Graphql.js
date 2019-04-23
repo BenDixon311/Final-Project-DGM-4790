@@ -26,7 +26,7 @@ class HomeGraphql extends Component{
                 <div>
                 
                 {data.projects.map(project => (
-                    <p>{project.title}</p>
+                    <p>{project.title}, {project.description}</p>
                     
                 ))}
 
