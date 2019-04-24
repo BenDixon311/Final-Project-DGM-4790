@@ -7,6 +7,7 @@ import AddGraphql from './components/Add-Graphql';
 import AddRest from './components/Add-Rest';
 import HomeRest from './components/Home-Rest';
 import HomeGraphql from './components/Home-Graphql';
+import PlayerDetail from './components/PlayerDetail';
 
 class App extends Component {
   render() {
@@ -16,8 +17,12 @@ class App extends Component {
           <Switch>
             <Route exact path = "/HomeRest" component={HomeRest} />
             <Route exact path = "/HomeGraphql" component={HomeGraphql} />
-            <Route exact path = "/Add-Rest" component={AddRest} />
-            <Route exact path = "/Add-Graphql" component={AddGraphql} />
+            <Route exact path = "/AddRest" component={AddRest} />
+            <Route exact path = "/AddGraphql" component={AddGraphql} />
+            <Route exact path = "/PlayerDetail/:name" 
+            component={PlayerDetail}
+            render={props => <PlayerDetail {...props} />}
+             />
           </Switch>
 
        <Footer />

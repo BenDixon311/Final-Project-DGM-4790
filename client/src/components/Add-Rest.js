@@ -40,7 +40,7 @@ const styles = theme => ({
 class AddRest extends Component{
 
     state ={
-        isDisabled: true
+        isDisabled: false
     }
     
     render() {

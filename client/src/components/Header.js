@@ -55,9 +55,9 @@ class Header extends Component {
                 <div>
                 <AppBar position="static">
                     <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
-                    <LinkTab label="REST Home" href="page1" />
+                    <LinkTab label="REST Home" href="page1" to={HomeRest} />
                     <LinkTab label="REST Add" href="page2" />
-                    <LinkTab label="Graphql Home" href="/HomeGraphql" />
+                    <LinkTab label="Graphql Home" href={'/HomeGraphql'} />
                     <LinkTab label="Graphql Add" href="page3" />
                     </Tabs>
                 </AppBar>

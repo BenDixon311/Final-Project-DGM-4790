@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,60 +8,56 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { classExpression } from '@babel/types';
-
-const styles = {
-    card: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  };
-
-  const cardStyle= {
-      maxWidth: 345,
-      maxHeight: 500
-  }
-
-  const cardMediaStyle = {
-      height: 260
-  }
-
-  const rootStyle = {
-      flexGrow: 1
-  }
-
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-class HomeRest extends Component{
+const cardStyle= {
+    maxWidth: 345,
+    maxHeight: 500
+}
+
+const cardMediaStyle = {
+    height: 260
+}
+
+const rootStyle = {
+    flexGrow: 1
+}
+
+
+
+class PlayerDetail extends Component {
     state = {
-        playerData: []
+        playerData: [],
     }
 
- 
-
     
-   
+    deletePlayer(id) {
+        axios.delete(proxyurl + 'https://restful-crud-node-server.herokuapp.com/delete/' + id)
+            .then(res => {
+                window.location.reload();
+            })
+    }
 
     componentDidMount() {
-        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/')
+        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/name/' + this.props.match.params.name )
             .then(res => {
                 const playerData = res.data;
                 this.setState({ playerData });
+                
             })
     }
 
 
     render() {
         return (
-            <div style={rootStyle}>
-                <Grid container spacing = {40}>
+           
+            <div>
                 
-                { this.state.playerData.map(player =>
-                    <Grid item xs={3}>
-                        <Card style={cardStyle}>
+                <Grid>
+                    {this.state.playerData.map(player => 
+                    <Grid item xs ={6}>
+                    <Card style={cardStyle}>
                         <CardActionArea>
                             <CardMedia
                             style={cardMediaStyle}
@@ -86,23 +80,22 @@ class HomeRest extends Component{
                         </CardActionArea>
                         <CardActions>
                             <Button 
+                            onClick = {() => {this.deletePlayer(player._id)}}
                             size="small" 
                             color="primary"
-                            href={'/PlayerDetail/' + player.name }
                             >
-                            Learn More
+                            DELETE
                             </Button>
                         </CardActions>
                     </Card>
+                    </Grid>
+                    )}
                 </Grid>
 
-                )}
-                </Grid>
             </div>
         )
     }
 }
 
 
-
-export default HomeRest;
+export default PlayerDetail;
