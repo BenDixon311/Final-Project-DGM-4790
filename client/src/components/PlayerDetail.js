@@ -8,6 +8,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import Modal from '@material-ui/core/Modal';
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
@@ -85,6 +86,12 @@ class PlayerDetail extends Component {
                             color="primary"
                             >
                             DELETE
+                            </Button>
+
+                            <Button
+                            onClick = {() =>}
+                            >
+
                             </Button>
                         </CardActions>
                     </Card>

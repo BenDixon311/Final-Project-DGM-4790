@@ -15,7 +15,7 @@ class App extends Component {
       <div>
        <Header />
           <Switch>
-            <Route exact path = "/HomeRest" component={HomeRest} />
+            <Route exact path = "/" component={HomeRest} />
             <Route exact path = "/HomeGraphql" component={HomeGraphql} />
             <Route exact path = "/AddRest" component={AddRest} />
             <Route exact path = "/AddGraphql" component={AddGraphql} />

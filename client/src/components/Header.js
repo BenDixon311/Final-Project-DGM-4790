@@ -2,73 +2,50 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import NoSsr from '@material-ui/core/NoSsr';
-import Tab from '@material-ui/core/Tab';
+import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import HomeGraphql from './Home-Graphql';
-import AddRest from './Add-Rest';
-import HomeRest from './Home-Rest';
-import AddGraphql from './Add-Graphql';
+import Button from '@material-ui/core/Button';
 
 
-function TabContainer(props) {
-    return (
-      <Typography component="div" style={{ padding: 8 * 3 }}>
-        {props.children}
-      </Typography>
-    );
-  }
-  
-  TabContainer.propTypes = {
-    children: PropTypes.node.isRequired,
-  };
-  
-  function LinkTab(props) {
-    return <Tab component="a" onClick={event => event.preventDefault()} {...props} />;
-  }
-  
-  const styles = theme => ({
+
+  const styles = {
     root: {
       flexGrow: 1,
-      backgroundColor: theme.palette.background.paper,
     },
-  });
+    grow: {
+      flexGrow: 1,
+    },
+    menuButton: {
+      marginLeft: -12,
+      marginRight: 20,
+    },
+  }; 
 
+function Header(props) {
+  
+  const { classes } = props;
 
-
-class Header extends Component {
-
-    state = {
-        value: 0,
-      };
-    
-      handleChange = (event, value) => {
-        this.setState({ value });
-      };
-    
-    render() {
-        
-        const { value } = this.state;
         return (
-         <NoSsr>
-                <div>
-                <AppBar position="static">
-                    <Tabs variant="fullWidth" value={value} onChange={this.handleChange}>
-                    <LinkTab label="REST Home" href="page1" to={HomeRest} />
-                    <LinkTab label="REST Add" href="page2" />
-                    <LinkTab label="Graphql Home" href={'/HomeGraphql'} />
-                    <LinkTab label="Graphql Add" href="page3" />
-                    </Tabs>
-                </AppBar>
-                {value === 0 && <TabContainer><HomeRest /></TabContainer>}
-                {value === 1 && <TabContainer><AddRest /></TabContainer>}
-                {value === 2 && <TabContainer><HomeGraphql /></TabContainer>}
-                {value === 3 && <TabContainer><AddGraphql /></TabContainer>}
-                </div>
-        </NoSsr>
+        <div className={classes.root}>
+          <AppBar position="static">
+            <Toolbar>
+              <Typography variant="h6" color="inherit" className={classes.grow}>
+                API FUNTIME
+              </Typography>
+              <Button color="inherit" href={'/'}>REST API Home</Button>
+              <Button color="inherit" href={'/AddRest'}>REST API Add</Button>
+              <Button color="inherit" href={'/HomeGraphql'}>GraphQL Home</Button>
+              <Button color="inherit" href={'/AddGraphql'}>GraphQL Add</Button>
+            </Toolbar>
+          </AppBar>
+        </div>
         )
     }
-}
 
-export default Header;
+  
+
+  Header.propTypes = {
+    classes: PropTypes.object.isRequired,
+  };
+
+export default withStyles(styles)(Header);
