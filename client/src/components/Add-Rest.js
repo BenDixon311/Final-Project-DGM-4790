@@ -42,6 +42,8 @@ class AddRest extends Component{
     state ={
         isDisabled: false
     }
+
+
     
     render() {
         const { classes } = this.props;
@@ -105,6 +107,7 @@ class AddRest extends Component{
                     color="default" 
                     className={classes.button}
                     disabled = {this.state.isDisabled}
+                    
                     >
                             Submit       
                     </Button>
