@@ -184,12 +184,15 @@ class PlayerDetail extends Component {
                             <Button 
                             onClick = {() => {this.deletePlayer(this.state._id)}}
                             size="small" 
-                            color="primary"
+                            color="secondary"
                             >
                             DELETE
                             </Button>
 
                             <Button
+                            
+                            size="small"
+                            color="green"
                             onClick = {this.handleOpen}
                             >
                             UPDATE
