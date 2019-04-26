@@ -8,6 +8,7 @@ import AddRest from './components/Add-Rest';
 import HomeRest from './components/Home-Rest';
 import HomeGraphql from './components/Home-Graphql';
 import PlayerDetail from './components/PlayerDetail';
+import TeamList from './components/TeamList';
 
 class App extends Component {
   render() {
@@ -22,6 +23,10 @@ class App extends Component {
             <Route exact path = "/PlayerDetail/:name" 
             component={PlayerDetail}
             render={props => <PlayerDetail {...props} />}
+             />
+             <Route exact path = "/team/:team"
+             component = {TeamList}
+             render = {props => <TeamList {...props} />}
              />
           </Switch>
 

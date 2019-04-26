@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -10,52 +8,35 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
-import { classExpression } from '@babel/types';
 
-const styles = {
-    card: {
-      maxWidth: 345,
-    },
-    media: {
-      height: 140,
-    },
-  };
+const cardStyle= {
+    maxWidth: 345,
+    maxHeight: 500
+}
 
-  const cardStyle= {
-      maxWidth: 345,
-      maxHeight: 500
-  }
+const cardMediaStyle = {
+    height: 260
+}
 
-  const cardMediaStyle = {
-      height: 260
-  }
-
-  const rootStyle = {
-      flexGrow: 1
-  }
-
-
+const rootStyle = {
+    flexGrow: 1
+}
 
 const proxyurl = "https://cors-anywhere.herokuapp.com/";
 
-class HomeRest extends Component{
-    state = {
-        playerData: []
-    }
+class TeamList extends Component {
 
- 
-
-    
-   
+state = {
+    playerData: []
+}
 
     componentDidMount() {
-        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/')
-            .then(res => {
-                const playerData = res.data;
-                this.setState({ playerData });
-            })
+        axios.get(proxyurl + 'https://restful-crud-node-server.herokuapp.com/team/' + this.props.match.params.team )
+        .then(res => {
+            const playerData = res.data;
+            this.setState({ playerData })
+        })
     }
-
 
     render() {
         return (
@@ -72,7 +53,7 @@ class HomeRest extends Component{
                             title={player.name}
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h4" component="h2">
+                            <Typography gutterBottom variant="h4" component="h2">
                                     {player.name} 
                                 </Typography>
                                 <Typography component = "h5">
@@ -91,7 +72,6 @@ class HomeRest extends Component{
                                     >{player.team}</Button>
                                 </Typography>
                                 
-
                             </CardContent>
 
                         </CardActionArea>
@@ -112,8 +92,8 @@ class HomeRest extends Component{
             </div>
         )
     }
+
+
 }
 
-
-
-export default HomeRest;
+export default TeamList;

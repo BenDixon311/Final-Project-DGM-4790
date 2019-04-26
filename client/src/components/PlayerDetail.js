@@ -78,11 +78,7 @@ const styles = theme => ({
         },
   });
 
-  function formSubmit(id) {
-       var action_src = "https://restful-crud-node-server.herokuapp.com/update/" + id;
-       var form = document.getElementById('update-form');
-       form.action = action_src;
-    }   
+ 
 
 class PlayerDetail extends Component {
     state = {
@@ -113,7 +109,12 @@ class PlayerDetail extends Component {
     deletePlayer(id) {
         axios.delete(proxyurl + 'https://restful-crud-node-server.herokuapp.com/delete/' + id)
             .then(res => {
-                window.location.reload();
+                console.log('this worked!');
+                window.location = "/";
+                
+            })
+            .catch((error) => {
+                window.location = "/";
             })
     }
 
@@ -124,9 +125,10 @@ class PlayerDetail extends Component {
             team: this.state.team,
             position: this.state.position,
             imgurl: this.state.imgurl
-        }).then(res => {
-            window.location.reload();
-        });
+        }).then (res => {
+            console.log('this worked');
+            window.location = "/"
+        })
 
        
     }
