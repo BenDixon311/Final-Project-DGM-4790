@@ -167,20 +167,38 @@ class PlayerDetail extends Component {
                             title={this.state.name}
                             />
                             <CardContent>
-                                <Typography gutterBottom variant="h4" component="h2">
-                                    {this.state.name}
+                            <Typography gutterBottom variant="h4" component="h2">
+                                    {this.state.name} 
                                 </Typography>
-                                <Typography component="h4">
-                                    {this.state.team}
+                                <Typography component = "h5">
+                                    {this.state.number}
                                 </Typography>
-                                <Typography component="h5">
+                                <Typography gutterBottom component="h5">
                                     {this.state.position}
                                 </Typography>
-
+                                <Typography component="h4">
+                                    <Button
+                                    variant="outlined"
+                                    size="large"
+                                    color="primary"
+                                    fullWidth
+                                    href={'/team/' + this.state.team}
+                                    >{this.state.team}</Button>
+                                </Typography>
+                                
                             </CardContent>
 
                         </CardActionArea>
                         <CardActions>
+                            <Button
+                            
+                            size="small"
+                            color="primary"
+                            onClick = {this.handleOpen}
+                            >
+                            UPDATE
+                            </Button>
+
                             <Button 
                             onClick = {() => {this.deletePlayer(this.state._id)}}
                             size="small" 
@@ -189,14 +207,7 @@ class PlayerDetail extends Component {
                             DELETE
                             </Button>
 
-                            <Button
                             
-                            size="small"
-                            color="green"
-                            onClick = {this.handleOpen}
-                            >
-                            UPDATE
-                            </Button>
                             <Modal
                                 aria-labelledby="update-form-title"
                                 aria-describedby="update-form-description"
