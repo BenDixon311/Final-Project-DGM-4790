@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import gql from 'graphql-tag';
-import { Query } from 'react-apollo';
+import { Query, Mutation } from 'react-apollo';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardActions from '@material-ui/core/CardActions';
@@ -14,6 +14,7 @@ import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import TextField from '@material-ui/core/TextField';
+import MenuItem from '@material-ui/core/MenuItem';
 
 
 const cardStyle= {
@@ -28,6 +29,36 @@ const cardMediaStyle = {
 const rootStyle = {
     flexGrow: 1
 }
+
+const options = [
+  {
+    value: 'true',
+    label: 'Personal Project'
+  },
+  {
+    value: 'false',
+    label: 'Team Project'
+  }
+];
+
+const devOptions = [
+  {
+    value: 'FRONT_END',
+    label: 'Front End'
+  },
+  {
+    value: 'BACK_END',
+    label: 'Back End'
+  },
+  {
+    value: 'DESIGN',
+    label: 'Design'
+  },
+  {
+    value: 'FULL_STACK',
+    label: 'Full Stack'
+  }
+]
 
 function getModalStyle() {
     const top = 50;
@@ -86,27 +117,37 @@ class ProjectDetail extends Component {
         imgurl: '',
         title: '',
         description: '',
-        solo: '',
-        devtype: ''
+        solo: true,
+        devtype: 'BACK_END',
+      
     }
 
-    //TODO: this isn't finished yet
+    //TODO: this isn't finished yets
     updateState(imgurl, title, description, solo, devtype) {
-            this.setState({})
+      this.setState((state, props) => {
+        return { imgurl: imgurl, title: title, description: description, solo: solo, devtype: devtype };
+      });
+        
+            
     }
 
     handleChange = input => event => {
         this.setState({ [input]: event.target.value });
       };
 
-    handleOpen = () => {
-        this.setState({ open: true });
+    handleOpen(imgurl, title, description, solo, devtype) {
+        this.setState({ open: true, imgurl: imgurl, title: title, description: description, solo: solo, devtype: devtype });
+        console.log(this.state.devtype, this.state.solo);
         
       };
     
     handleClose = () => {
         this.setState({ open: false });
       };
+
+    redirect = () => {
+      window.location = "/HomeGraphql"
+    }
 
     render() {
         const { classes } = this.props;
@@ -124,19 +165,46 @@ class ProjectDetail extends Component {
           } 
         `
 
+        const UPDATE_MUTATION = gql`
+        mutation {
+          updateProject(id: "${this.props.match.params.id}",
+           title: "${this.state.title}"
+           description: "${this.state.description}"
+           devtype: ${this.state.devtype}
+           solo: ${this.state.solo}
+           imgurl: "${this.state.imgurl}"
+           
+           ){
+             title
+             description
+             devtype
+             solo
+             imgurl
+           }
+         }
+        `
+
+        const DELETE_MUTATION = gql`
+        mutation {
+          deleteProject(id: "${this.props.match.params.id}"){
+            id
+            title
+          }
+        }
+        `
+
 
         return (
             <Query query={QUERY}>
                 {({ loading, error, data }) => {
                  if (loading) return <div>Fetching</div>;
                 if (error) return <div>Error</div>;
+                
 
           return (
                 <div style = {rootStyle}>
                 <Grid container spacing = {40}>
                 
-                {this.updateState(data.project.imgurl, data.project.title, data.project.description, data.project.solo, data.project.devtype)}
-               
                     
                     <Grid item xs={10}>
                         <Card style={cardStyle}>
@@ -154,30 +222,46 @@ class ProjectDetail extends Component {
                                     {data.project.description}
                                 </Typography>
                                 <Typography component="h5">
-                                    {data.project.solo}
+                                    {data.project.solo === true && (
+                                      <p>Personal Project</p>
+                                    )}
+                                    {data.project.solo === false && (
+                                      <p>Team Project</p>
+                                    )}
+                                </Typography>
+                                <Typography component="h4">
+                                    {data.project.devtype} Project
                                 </Typography>
 
                             </CardContent>
 
                         </CardActionArea>
                         <CardActions>
+                    
                         <Button
-                            
                             size="small"
                             color="primary"
-                            onClick = {this.handleOpen}
+                            onClick = {() => this.handleOpen(data.project.imgurl, data.project.title, data.project.description, data.project.solo, data.project.devtype)}
                             >
                             UPDATE
-                            </Button>
-
-                            <Button 
-                            //onClick = {() => {this.deletePlayer(this.state._id)}}
-                            size="small" 
-                            color="secondary"
-                            >
-                            DELETE
-                            </Button>
-
+                        </Button>
+                     
+                        <Mutation
+                          mutation = {DELETE_MUTATION}
+                          onCompleted = {() => this.redirect()}
+                          >
+                            {DeleteProject => (
+                                  <Button 
+                                  onClick = {() => DeleteProject()}
+                                  size="small" 
+                                  color="secondary"
+                                  >
+                                  DELETE
+                                  </Button>
+                                  
+                                  )}
+                        </Mutation>
+                        
                             <Modal
                                 aria-labelledby="update-form-title"
                                 aria-describedby="update-form-description"
@@ -189,59 +273,72 @@ class ProjectDetail extends Component {
                                    Update 
                                 </Typography>
                                 <Typography>
-                                        <form className = {classes.container} noValidate autoComplete="off" action = {this.state.url}  method = "POST">
-                                            
+
+                                
+                                        <form className = {classes.container} noValidate autoComplete="off">
+                                        
+
                                             <TextField 
-                                                //value={this.state.name}
-                                               // onChange={this.handleChange('name')}
+                                                value={this.state.title}
+                                                onChange={this.handleChange('title')}
                                                 required
                                                 fullWidth
-                                                label="Name"
+                                                label="Title"
                                                 className={classes.textField}
                                                 type="text"
-                                                name="name"
+                                                name="title"
                                                 margin="normal"
                                                 variant="filled"
                                             />
                                             <TextField 
-                                                //value={this.state.number}
-                                                //onChange = {this.handleChange('number')}
+                                                value={this.state.description}
+                                                onChange = {this.handleChange('description')}
                                                 required
                                                 fullWidth
-                                                label="Number"
-                                                className={classes.textField}
-                                                type="number"
-                                                name="number"
-                                                margin="normal"
-                                                variant="filled"
-                                            />
-                                            <TextField 
-                                               // value={this.state.team}
-                                               // onChange = {this.handleChange('team')}
-                                                required
-                                                fullWidth
-                                                label="Team"
+                                                label="Description"
                                                 className={classes.textField}
                                                 type="text"
-                                                name="team"
+                                                name="description"
                                                 margin="normal"
                                                 variant="filled"
                                             />
                                             <TextField 
-                                                //value={this.state.position}
-                                               // onChange = {this.handleChange('position')}
+                                                select
+                                                value={this.state.solo}
+                                                onChange = {this.handleChange('solo')}
                                                 required
                                                 fullWidth
-                                                label="Position"
+                                                label="Personal or Team Project?"
                                                 className={classes.textField}
-                                                type="text"
-                                                name="position"
                                                 margin="normal"
                                                 variant="filled"
-                                            />
+                                            >
+                                              {options.map(option => (
+                                                <MenuItem key={option.value} value={option.value}>
+                                                  {option.label}
+                                                </MenuItem>
+                                              ))}
+                                            </TextField>
                                             <TextField 
-                                               // value={this.state.imgurl}
-                                                //onChange = {this.handleChange('imgurl')}
+                                                select
+                                                value={this.state.devtype}
+                                                onChange = {this.handleChange('devtype')}
+                                                required
+                                                fullWidth
+                                                label="Development Type"
+                                                className={classes.textField}
+                                                margin="normal"
+                                                variant="filled"
+                                            >
+                                            {devOptions.map(option => (
+                                              <MenuItem key={option.value} value = {option.value}>
+                                                {option.label}
+                                              </MenuItem>
+                                            ))}
+                                            </TextField>
+                                            <TextField 
+                                                value={this.state.imgurl}
+                                                onChange = {this.handleChange('imgurl')}
                                                 required
                                                 fullWidth
                                                 label="Image URL"
@@ -251,22 +348,32 @@ class ProjectDetail extends Component {
                                                 margin="normal"
                                                 variant="filled"
                                             />
-
+                                          <Mutation
+                                          mutation = {UPDATE_MUTATION}
+                                          onCompleted = {() => this.redirect()}
+                                           >
+                                            {UpdateProject => (
                                             <Button 
-                                            type = "button" 
+                                            
                                             variant="contained" 
                                             color="default" 
                                             className={classes.button}
-                                            //onClick = {() => {this.updatePlayer(this.state._id)}}
+                                            onClick = {() => UpdateProject()}
                                             
                                             >
                                                     Submit       
                                             </Button>
+                                             )}
+                                            </Mutation>
+                                          
                                         </form>
+                                         
+                                        
                                 </Typography>
                             </div>
 
                             </Modal>
+                            
                         </CardActions>
                     </Card>
                 </Grid>
