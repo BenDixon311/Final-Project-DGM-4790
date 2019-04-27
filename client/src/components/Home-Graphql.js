@@ -33,6 +33,7 @@ class HomeGraphql extends Component{
             description
             id
             devtype
+            imgurl
           }
          }
         `
@@ -53,7 +54,7 @@ class HomeGraphql extends Component{
                         <CardActionArea>
                             <CardMedia
                             style={cardMediaStyle}
-                            //image={player.imgurl}
+                            image={project.imgurl}
                             title={project.title}
                             />
                             <CardContent>
@@ -71,7 +72,11 @@ class HomeGraphql extends Component{
 
                         </CardActionArea>
                         <CardActions>
-                            <Button size="small" color="primary">
+                            <Button 
+                            size="small" 
+                            color="primary"
+                            href={'/ProjectDetail/' + project.id}
+                            >
                             Learn More
                             </Button>
                         </CardActions>
