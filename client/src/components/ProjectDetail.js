@@ -118,7 +118,7 @@ class ProjectDetail extends Component {
         title: '',
         description: '',
         solo: true,
-        devtype: 'BACK_END',
+        devtype: 'BACK_END', //this is dummy data, I had an error when it was just an empty string ''
       
     }
 
