@@ -19,7 +19,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 
 const cardStyle= {
     maxWidth: 345,
-    maxHeight: 500
+    maxHeight: 1000
 }
 
 const cardMediaStyle = {
@@ -27,7 +27,9 @@ const cardMediaStyle = {
 }
 
 const rootStyle = {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: 20
+    
 }
 
 const options = [
@@ -197,10 +199,13 @@ class ProjectDetail extends Component {
 
           return (
                 <div style = {rootStyle}>
-                <Grid container spacing = {40}>
+                <Grid container spacing = {40}
+                    justify="center"
+                    alignItems="center"
+                >
                 
                     
-                    <Grid item xs={10}>
+                    <Grid item xs={3}>
                         <Card style={cardStyle}>
                         <CardActionArea>
                             <CardMedia

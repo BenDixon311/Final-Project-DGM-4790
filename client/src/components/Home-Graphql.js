@@ -20,7 +20,8 @@ const cardMediaStyle = {
 }
 
 const rootStyle = {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: 20
 }
 
 class HomeGraphql extends Component{
@@ -49,7 +50,7 @@ class HomeGraphql extends Component{
                 <Grid container spacing = {40}>
                 {data.projects.map(project => (
                     
-                    <Grid item xs={3}>
+                    <Grid item sm={12} md={3}>
                         <Card style={cardStyle}>
                         <CardActionArea>
                             <CardMedia
