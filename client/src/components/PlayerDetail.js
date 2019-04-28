@@ -26,7 +26,8 @@ const cardMediaStyle = {
 }
 
 const rootStyle = {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: 20
 }
 
 function getModalStyle() {
@@ -153,12 +154,15 @@ class PlayerDetail extends Component {
         const { classes } = this.props;
         return (
            
-            <div>
+            <div style = {rootStyle}>
                 
-                <Grid>
+                <Grid container
+                justify="center"
+                alignItems="center"
+                >
                     
                         
-                    <Grid item xs ={6}>
+                    <Grid item xs ={3}>
                     <Card style={cardStyle}>
                         <CardActionArea>
                             <CardMedia

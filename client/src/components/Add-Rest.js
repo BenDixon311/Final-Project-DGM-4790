@@ -34,6 +34,11 @@ const styles = theme => ({
       },
   });
 
+  const rootStyle = {
+
+    padding: 20
+}
+
 
 class AddRest extends Component{
 
@@ -43,7 +48,8 @@ class AddRest extends Component{
     render() {
         const { classes } = this.props;
         return (
-            <div>
+            <div style={rootStyle}>
+              <h1>Add NBA Player</h1>
                 <form className = {classes.container} noValidate autoComplete="off" action = "https://restful-crud-node-server.herokuapp.com/create" method = "POST">
                     <TextField 
                         required

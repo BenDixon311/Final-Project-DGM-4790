@@ -61,6 +61,7 @@ class HomeRest extends Component{
     render() {
         return (
             <div style={rootStyle}>
+            <h1>NBA Players</h1>
                 <Grid container spacing = {40}>
                 
                 { this.state.playerData.map(player =>

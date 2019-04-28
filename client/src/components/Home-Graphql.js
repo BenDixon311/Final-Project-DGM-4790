@@ -47,6 +47,7 @@ class HomeGraphql extends Component{
 
           return (
                 <div style = {rootStyle}>
+                <h1>Portfolio Projects</h1>
                 <Grid container spacing = {40}>
                 {data.projects.map(project => (
                     

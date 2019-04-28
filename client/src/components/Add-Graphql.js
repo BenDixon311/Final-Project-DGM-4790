@@ -67,6 +67,11 @@ const styles = theme => ({
       },
   });
 
+  const rootStyle = {
+   
+    padding: 20
+}
+
 
 class AddGraphql extends Component{
 
@@ -108,7 +113,8 @@ class AddGraphql extends Component{
         `
 
         return (
-            <div>
+            <div style={rootStyle}>
+                <h1>Add Project</h1>
                 <form className = {classes.container} noValidate autoComplete="off">
                     <TextField 
                     value={this.state.title}
