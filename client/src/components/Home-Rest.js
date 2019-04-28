@@ -31,7 +31,8 @@ const styles = {
   }
 
   const rootStyle = {
-      flexGrow: 1
+      flexGrow: 1,
+      padding: 20
   }
 
 

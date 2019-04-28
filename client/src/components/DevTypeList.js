@@ -20,7 +20,8 @@ const cardMediaStyle = {
 }
 
 const rootStyle = {
-    flexGrow: 1
+    flexGrow: 1,
+    padding: 20
 }
 
 
@@ -56,6 +57,7 @@ render() {
 
       return (
             <div style = {rootStyle}>
+            <h1>{this.props.match.params.type} Projects</h1>
             <Grid container spacing = {40}>
             {data.projectType.map(project => (
                 
