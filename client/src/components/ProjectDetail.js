@@ -376,7 +376,18 @@ class ProjectDetail extends Component {
                         </CardActions>
                     </Card>
                 </Grid>
+
+                <Grid item xs={3}>
                 
+                    <Button
+                      color="primary"
+                      size="large"
+                      href={'/DevType/' + data.project.devtype}
+                    >
+                    View all {data.project.devtype} projects?
+
+                    </Button>
+                </Grid>
 </Grid>
                 </div>
           )

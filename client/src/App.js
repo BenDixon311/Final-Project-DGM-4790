@@ -10,6 +10,7 @@ import HomeGraphql from './components/Home-Graphql';
 import PlayerDetail from './components/PlayerDetail';
 import TeamList from './components/TeamList';
 import ProjectDetail from './components/ProjectDetail';
+import DevTypeList from './components/DevTypeList';
 
 class App extends Component {
   render() {
@@ -32,6 +33,10 @@ class App extends Component {
              <Route exact path = "/ProjectDetail/:id" 
              component={ProjectDetail}
              render = {props => <ProjectDetail {...props} />}
+             />
+             <Route exact path = "/DevType/:type"
+             component={DevTypeList}
+             render = {props => <DevTypeList {...props}/>}
              />
           </Switch>
 
