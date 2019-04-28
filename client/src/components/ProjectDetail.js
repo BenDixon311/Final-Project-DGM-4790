@@ -122,19 +122,13 @@ class ProjectDetail extends Component {
       
     }
 
-    //TODO: this isn't finished yets
-    updateState(imgurl, title, description, solo, devtype) {
-      this.setState((state, props) => {
-        return { imgurl: imgurl, title: title, description: description, solo: solo, devtype: devtype };
-      });
-        
-            
-    }
+   
 
     handleChange = input => event => {
         this.setState({ [input]: event.target.value });
       };
 
+      //THIS ALSO FILLS THE INITIAL STATE DATA - probably bad practice.
     handleOpen(imgurl, title, description, solo, devtype) {
         this.setState({ open: true, imgurl: imgurl, title: title, description: description, solo: solo, devtype: devtype });
         console.log(this.state.devtype, this.state.solo);

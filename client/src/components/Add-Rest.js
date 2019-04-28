@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
-import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
@@ -39,10 +37,7 @@ const styles = theme => ({
 
 class AddRest extends Component{
 
-    state ={
-        isDisabled: false
-    }
-
+  
 
     
     render() {
@@ -106,7 +101,7 @@ class AddRest extends Component{
                     variant="contained" 
                     color="default" 
                     className={classes.button}
-                    disabled = {this.state.isDisabled}
+                    
                     
                     >
                             Submit       
