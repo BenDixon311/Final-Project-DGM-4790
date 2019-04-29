@@ -14,6 +14,10 @@ While in the project directory, open a terminal and run
  
  `yarn dockerStart`
  
+ start the server by running 
+ 
+ `yarn start`
+ 
  To deploy the Prisma API run
  
  `prisma deploy`
@@ -22,7 +26,34 @@ While in the project directory, open a terminal and run
  
  `yarn seed`
  
- start the server by running 
+ # REST API
+ #### 3 GET queries
  
- `yarn start`
+  1. Get all players
+  2. Get one player by name
+  3. Get players by team name
+  
+ #### POST
+ 
+  1. Create a player
+  
+ #### PUT
+
+  1. Update player details
+ 
+ #### DELETE
+  1. Delete player
+  
+# GraphQL API
+#### 3 Queries
+  1. Get all projects
+  2. Get one project by ID
+  3. Get project by development type
+#### 3 Mutations
+  1. Create Project
+  2. Update Project
+  3. Delete Project
+ 
+ 
+
  
