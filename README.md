@@ -1,4 +1,4 @@
-# Final Project DGM 4790
+# React with RESTful and GraphQL API's
 
 View site here: https://4790-final.netlify.com/
 
