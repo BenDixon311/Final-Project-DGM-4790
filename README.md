@@ -2,7 +2,26 @@
 
 View site here: https://4790-final.netlify.com/
 
-## Setting up the server for GraphQL pages
+The RESTful API is deployed [here](https://restful-crud-node-server.herokuapp.com/), no need to set it up on your own machine. (If you really want to, [here is the repo](https://github.com/BenDixon311/RESTful-CRUD-Node-Server))
+
+## Docker
+
+Docker is required to run the local postgres database and prisma server.
+
+Docker allows you to bring up limited virtual machines and run only services in them. For more info visit [https://www.docker.com/](https://www.docker.com/)
+
+<details>
+    <summary><strong>I don't have Docker installed on my machine</strong></summary>
+
+To install docker follow the link that works for you:
+
+[Docker for Mac](https://docs.docker.com/docker-for-mac/install/)
+
+[Docker for Windows](https://docs.docker.com/docker-for-windows/install/)
+
+</details>
+
+## Setting up the Docker server for GraphQL pages
 
 First, clone the server repo (https://github.com/BenDixon311/Portfolio-Backend.git)
 
