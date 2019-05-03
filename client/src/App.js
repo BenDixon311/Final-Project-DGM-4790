@@ -11,11 +11,19 @@ import PlayerDetail from './components/PlayerDetail';
 import TeamList from './components/TeamList';
 import ProjectDetail from './components/ProjectDetail';
 import DevTypeList from './components/DevTypeList';
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
+
+const theme = createMuiTheme({
+  palette: {
+    type: 'dark',
+  }
+})
 
 class App extends Component {
   render() {
     return (
       <div>
+        <MuiThemeProvider theme={theme}>
        <Header />
           <Switch>
             <Route exact path = "/" component={HomeRest} />
@@ -41,6 +49,7 @@ class App extends Component {
           </Switch>
 
        <Footer />
+       </MuiThemeProvider>
       </div>
     );
   }

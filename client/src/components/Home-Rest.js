@@ -11,13 +11,6 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import { classExpression } from '@babel/types';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-
-const theme = createMuiTheme({
-  palette: {
-    type: 'dark',
-  }
-})
 
 const styles = {
     card: {
@@ -70,7 +63,7 @@ class HomeRest extends Component{
 
     render() {
         return (
-            <MuiThemeProvider theme={theme}>
+            
             <div style={rootStyle}>
             <h1>NBA Players</h1>
                 <Grid container spacing = {40}>
@@ -123,7 +116,7 @@ class HomeRest extends Component{
                 )}
                 </Grid>
             </div>
-            </MuiThemeProvider>
+           
         )
     }
 }
