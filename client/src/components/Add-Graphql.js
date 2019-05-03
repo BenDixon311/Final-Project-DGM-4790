@@ -8,6 +8,7 @@ import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 
 
+
 const options = [
     {
       value: 'true',
@@ -65,6 +66,9 @@ const styles = theme => ({
     iconSmall: {
         fontSize: 20,
       },
+      palette: {
+        type: 'dark'
+      }
   });
 
   const rootStyle = {

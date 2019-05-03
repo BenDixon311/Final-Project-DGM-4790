@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 
 
+
 const styles = theme => ({
     container: {
       display: 'flex',
@@ -40,17 +41,33 @@ const styles = theme => ({
 }
 
 
+
 class AddRest extends Component{
 
-  
+  redirect = (e) => {
+    window.location = "/";
+    e.preventDefault();
+  }
+
+  state = {
+    isDisabled: false,
+    name: '',
+    number: 0,
+    position: '',
+    team: '',
+    imgurl: ''
+  }
 
     
     render() {
+       
+
         const { classes } = this.props;
         return (
             <div style={rootStyle}>
               <h1>Add NBA Player</h1>
                 <form className = {classes.container} noValidate autoComplete="off" action = "https://restful-crud-node-server.herokuapp.com/create" method = "POST">
+                  
                     <TextField 
                         required
                         fullWidth
@@ -107,7 +124,7 @@ class AddRest extends Component{
                     variant="contained" 
                     color="default" 
                     className={classes.button}
-          
+                    onSubmit= {() => this.redirect()}
                     
                     >
                             Submit       
